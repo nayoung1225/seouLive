@@ -1,0 +1,52 @@
+@import url(../reset.css);
+
+
+#container{margin:0 auto;max-width:1200px;}
+
+.title_box{padding:0 0 50px;}
+.title_box h2{font-size:30px;line-height:40px;text-align:center;}
+
+/* 게시판 공통 테이블 */
+.table_wrap > table{width:100%;border-spacing:0;border-top:2px solid #49539E;table-layout:fixed;}
+.table_wrap > table thead th{padding:16px 10px;border-bottom:1px solid #ccc;background-color:#f9f9f9;font-weight:400;}
+.table_wrap > table tbody th{padding:15px 10px;border-bottom:1px solid #ccc;background-color:#fafafa;font-weight:200;}
+.table_wrap > table tbody td{position:relative;padding:12px 10px;border-bottom:1px solid #ccc;font-weight:200;text-align:center;}
+.table_wrap > table tbody td.left{text-align:left;;}
+
+.b_input {padding:13px 10px;width: auto;height:45px;border:1px solid #ccc;font-family: inherit;font-weight: 300;box-sizing: border-box;border-radius: 0;-webkit-appearance: none;-moz-appearance: none;appearance: none;vertical-align: middle;}
+.b_input.width{width:120px;}
+
+/* 게시판 검색 */
+.search_wrap{padding-bottom:30px;}
+.search_wrap .search_box{text-align:center;}
+.search_wrap .search_box .cate_box{display:inline-block;text-align: left;}
+.search_wrap .search_box .cate_box select{position: relative;padding:13px 10px;height:45px;width: 100%;min-width: 90px;border:1px solid #ccc;}
+
+.search_wrap .search_box .search_input_box{display:inline-block;text-align: left;}
+.search_wrap .search_box .search_input_box .b_input{width: 400px;}
+.search_wrap .search_box .search_input_box .search_button{padding: 13px 10px;width: 90px;height:45px;border: none;background-color:#49539E;font-size: 16px;color: #fff;box-sizing: border-box;vertical-align: middle;}
+/* 게시판 버튼 */
+.button_wrap .button_box {padding:30px 0 0 0;text-align:right}
+.button_wrap .button_box li {display: inline-block;margin: 0 0 5px 4px;vertical-align: top;}
+.button_wrap .button_box li a{padding: 11px 16px;border: 1px solid #ccc;color: #333;border-radius: 5px;}
+.button_wrap .button_box li a.active{background-color:#49539E;color:#fff}
+.button_wrap .button_box li a:hover{background-color:#49539E;color:#fff}
+
+/* 페이징 */
+
+.paging_wrap .paging_box ul {padding:50px 0 0;text-align: center;}
+.paging_wrap .paging_box ul li {display: inline-block;vertical-align: middle;}
+.paging_wrap .paging_box ul li a {display: block;position: relative;font-weight: 300;font-size: 16px;color: #7b7b7b;box-sizing: border-box;}
+.paging_wrap .paging_box ul li:not(.pager) a {padding: 8px 0 9px;min-width: 33px;}
+.paging_wrap .paging_box ul li a.active {padding: 9px 0 10px;border: none;background-color: #49539E;color: #fff;}
+
+
+.board_write_box{border-top:2px solid #49539E;}
+.board_write_box .row{display:table;width:100%;border-bottom:1px solid #ccc;table-layout:fixed;}
+.board_write_box .row > div{display:table-cell;}
+.board_write_box .row .col1{width:20%;text-align: center;}
+.board_write_box .row .col2{padding: 10px;width:100%;box-sizing: border-box;}
+.board_write_box .title_box{padding: 12px 15px;background-color: #fafafa;}
+.board_write_box .input_box .b_input{width: 100%;}
+.board_write_box textarea{width:100%;text-align:left;border-color:#ccc;}
+.board_write_box select{position: relative;padding:13px 10px;height:45px;width: 100%;max-width: 150px;border:1px solid #ccc;}

@@ -1,0 +1,192 @@
+@charset "utf-8";
+
+.mypage_wrap{
+    width: 1200px;
+    height: auto;
+    margin: 0 auto;
+    margin-top: 50px;
+    padding-bottom: 30px;
+    overflow: hidden;
+}
+.clear::after{
+    content:'';
+    display:block;
+    clear:both;
+}
+
+.mypage_wrap .susb_tit{
+    margin-bottom: 50px;
+}
+
+.mypage_wrap .myCont{
+    float: left;
+}
+
+.left_menu{}
+.left_menu .user_box{
+    border: 2px solid #f5f5f5;
+    margin: 0 auto;
+    padding: 40px;
+    text-align: center;
+    box-shadow: 5px 5px 5px 5px #ededed;
+}
+.left_menu .user_box img{
+    display: block;
+    width: 100px;
+    height: 100px;
+}
+.left_menu .user_box .user_id{
+    display: inline-block;
+    padding-top: 5px;
+}
+
+.left_menu ul.side_menu{
+    display: block;
+    width: 184px;
+    margin-top: 40px;
+}
+.left_menu ul.side_menu li{
+    padding: 15px 20px;
+    background-color: #f7f8ff;
+    border: 1px solid #49539E;
+    border-bottom: 0;
+    cursor: pointer;
+}
+.left_menu ul.side_menu li:last-of-type{
+    border: 1px solid #49539E;
+}
+.left_menu ul.side_menu li a{
+    display: block;
+    text-align: center;
+    color: #49539E;
+}
+
+.left_menu ul.side_menu li:hover{
+    background-color: #49539E;
+    transition: 0.3s ease-out;
+}
+.left_menu ul.side_menu li:hover a{
+    color: #fff;
+}
+
+/* right_menu */
+.right_menu{
+    margin-left: 156px;
+}
+
+.right_menu .my_box{
+    width: 860px;
+}
+
+.right_menu .my_box .more_btn{
+    display: inline-block;
+    float: right;
+}
+.right_menu .my_box .more_btn:hover{
+    text-decoration: underline;
+}
+
+.right_menu .my_box .fa-chevron-right{
+    padding-left: 5px;
+}
+.right_menu .my_box .my_cont_box{
+    margin-bottom: 30px;
+}
+.right_menu .my_box .my_cont_box:last-of-type{
+    margin-bottom: 0;
+}
+.right_menu .my_box .my_cont_box h2{
+    display: inline-block;
+    padding: 0 0 15px 10px;
+}
+
+.right_menu .my_box .my_cont_box .container{
+    height: 150px;
+    padding: 20px 30px;
+    background: #f7f8ff;
+    border: 1px solid #ededed;
+}
+
+.right_menu .my_box .like_cont .list_thumType li.thum{
+    float: left;
+    /* position: relative; */
+    padding: 15px 0 9px;
+    margin-right: 24px;
+}
+.right_menu .my_box .like_cont .list_thumType li.thum:last-of-type{
+    margin-right: 0;
+}
+.right_menu .my_box .like_cont .list_thumType li.thum .photo{
+    position: relative;
+}
+.right_menu .my_box .like_cont .list_thumType li.thum .photo a img{
+    width: 140px;
+    height: 94px;
+}
+.right_menu .my_box .like_cont .list_thumType li.thum .photo .flag{
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 12px;
+    padding: 0 5px;
+    box-sizing: border-box;
+    min-width: 48px;
+    height: 28px;
+    line-height: 28px;
+    color: #fff;
+    text-align: center;
+    line-height: 28px;
+    letter-spacing: -0.35px;
+}
+.right_menu .my_box .like_cont .list_thumType li.thum .photo .type_ing{
+    background-color: #ff3333;
+}
+.right_menu .my_box .like_cont .list_thumType li.thum .photo .fa-heart.on{
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    color: #ff3333;
+    font-size: 20px;
+}
+.right_menu .my_box .like_cont .list_thumType li.thum .photo .type_before{
+    background-color: #13294b;
+}
+
+.right_menu .my_box .like_cont .list_thumType li.thum .area_txt .tit{
+    font-weight: 600;
+    margin-top: 10px;
+}
+
+/* 내 리뷰 */
+.right_menu .my_box .my_cont_box .my_review::after{
+    content:'';
+    display:block;
+    clear:both;
+}
+.right_menu .my_box .my_cont_box .my_review{
+    /* float: left; */
+    /* display: block; */
+    height: auto;
+    background-color: #fff;
+    margin-bottom: 5px;
+}
+.right_menu .my_box .my_cont_box .my_review img{
+    float: left;
+    width: 150px;
+    height: 100px;
+}
+.right_menu .my_box .my_cont_box .my_review .desc_wrap{
+    width: 620px;
+    display: inline-block;
+    padding-left: 20px;
+    padding-top: 10px;
+    word-break: break-all;
+    word-wrap: break-word;
+}
+.right_menu .my_box .my_cont_box .my_review .desc_wrap h4{
+    padding-bottom: 10px;
+}
+.right_menu .my_box .my_cont_box .my_review .desc_wrap .desc{
+    /* display: inline-block;
+    line-height: 1.3; */
+}

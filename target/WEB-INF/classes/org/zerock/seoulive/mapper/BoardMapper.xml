@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.zerock.seoulive.mapper.BoardMapper">
+
+    <select id="select" resultType="org.zerock.seoulive.board.travel.domain.BoardVO">
+        SELECT *
+        FROM tbl_travel
+        WHERE title = #{title}
+    </select>
+
+    <select id="getList" resultType="org.zerock.seoulive.board.travel.domain.BoardVO">
+<!--        <![CDATA[-->
+<!--        SELECT seq, writer, category, title, content, address, total, write_date, modify_date-->
+<!--        FROM (-->
+<!--            SELECT /*+INDEX_DESC(tbl_travel) */ ROWNUM AS rn, seq, writer, category, title, content, address, total, write_date, modify_date-->
+<!--            FROM tbl_travel-->
+<!--            WHERE ROWNUM <= #{currPage} * #{amount}-->
+<!--            <if test="keyword != null">-->
+<!--                AND title LIKE '%' || #{keyword} || '%'-->
+<!--            </if>-->
+<!--        )-->
+<!--        WHERE rn > (#{currPage} - 1) * #{amount}-->
+<!--        ]]>-->
+<!--        SELECT title-->
+<!--        FROM tbl_travel-->
+<!--        WHERE title LIKE 'A%';-->
+
+<!--        WHERE title LIKE CONCAT('%','a','%')-->
+    </select>
+
+    <!-- 게시물 총 개숫 -->
+    <select id="getTotal" resultType="int">
+
+<!--        select count(*) from tbl_travel-->
+
+<!--        <if test="keyword != null">-->
+
+<!--            &lt;!&ndash; Oracle &ndash;&gt;-->
+<!--            where title like '%'||#{keyword}||'%'-->
+
+<!--        </if>-->
+
+    </select>
+
+
+</mapper>

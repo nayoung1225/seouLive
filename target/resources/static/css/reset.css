@@ -1,0 +1,15 @@
+@charset "utf-8";
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700&family=Orbitron&family=Roboto&display=swap');
+
+
+/* reset */
+*{text-decoration:none;list-style-type:none;margin:0;padding:0;}
+div, ul, li, a, input, select, form, dl, dt, dd{list-style-type:none;}
+fieldset, img{border:none;}
+img, input, select, textarea{vertical-align:middle;}
+img{border:0;}
+ol, ul{list-style-type:none;}
+a{color:inherit;text-decoration:none;}
+a:link, a:visited,a:hover{text-decoration:none;}
+body{font-family: 'Nanum Gothic', sans-serif;font-size:14px;line-height:1;color:#333;}
+.hide{display: block;position:absolute;width:0;height:0;text-indent:-9999999px;overflow:hidden;}

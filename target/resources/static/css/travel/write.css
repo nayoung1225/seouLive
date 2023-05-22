@@ -1,0 +1,102 @@
+@charset "utf-8";
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700&family=Orbitron&family=Roboto&display=swap');
+
+
+/* reset */
+*{text-decoration:none;list-style-type:none;margin:0;padding:0;}
+div, ul, li, a, input, select, form, dl, dt, dd{list-style-type:none;}
+fieldset, img{border:none;}
+img, input, select, textarea{vertical-align:middle;}
+img{border:0;}
+ol, ul{list-style-type:none;}
+a{color:inherit;text-decoration:none;}
+a:link, a:visited,a:hover{text-decoration:none;}
+body{font-family: 'Nanum Gothic', sans-serif;font-size:14px;line-height:1;color:#333;}
+
+/* 전체 영역 */
+form {
+    width: 1200px;
+    margin: auto;
+}
+/* 제목 */
+.travel_title {
+    margin: 5px auto;
+}
+.travel_title input {
+    width: 1200px;
+    height: 25px;
+    margin: 5px auto;
+    font-size: 14px;
+}
+/* 테마 */
+.travel_thema label {
+    text-align: left;
+    cursor: pointer;
+}
+.travel_thema input[type="checkbox"]:checked + span {
+    font-weight: bold;
+}
+.travel_thema input[type="checkbox"] {
+    position: absolute;
+    overflow: hidden;
+    clip:rect(0,0,0,0);
+}
+/* 캘린더 */
+.cal_input {
+    margin: 10px auto;
+}
+.cal_input .cal_time_input {
+    margin: 5px auto;
+}
+/* 내용 */
+.content {
+    width: 1200px;
+    margin: 10px auto;
+}
+.content input {
+    width: 100%;
+    height: 150px;
+    font-size: 14px;
+}
+/* 주소 */
+/* .location {
+    margin: auto;
+} */
+/* 첨부 파일 */
+.travel_filebox {
+    margin-top: 15px;
+}
+.travel_filebox label {
+    padding: 5px;
+    color: #333;
+    background-color: white;
+    cursor: pointer;
+    border: 1px solid #d6d6d6;
+    border-radius: 5px;
+    font-size: 12px;
+}
+.travel_filebox input[type="file"] {
+    position: absolute;
+    overflow: hidden;
+    clip:rect(0,0,0,0);
+}
+/* 미리보기 */
+#preview_imgs img {
+    margin: 5px;
+    width: 300px;
+    height: 300px;
+}
+/* 버튼 */
+.travel_button {
+    margin: 15px auto;
+}
+.travel_button input {
+    width: 60px;
+    padding: 3px;
+    color: #333;
+    background-color: white;
+    cursor: pointer;
+    border: 1px solid #d6d6d6;
+    border-radius: 5px;
+    font-size: 12px;
+}

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+	
+	<!-- <context:component-scan base-package="org.zerock.seoulive.domain" /> -->
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	
+	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
+
+		<property name="driverClassName" value="oracle.jdbc.OracleDriver"/>
+		<property name="jdbcUrl" value="jdbc:oracle:thin:@o9o6yubutmsjch3b_high?TNS_ADMIN=/Users/nayoung/opt/OracleCloudWallet/Wallet_O9O6YUBUTMSJCH3B" />
+		<property name="username" value="SEOULIVE"/>
+		<property name="password" value="Oracle12345678"/>
+
+		<property name="maximumPoolSize" value="30"/>
+		<property name="minimumIdle" value="2"/>
+		<property name="idleTimeout" value="10000"/>
+		<property name="connectionTimeout" value="1000"/>
+		<property name="connectionTestQuery" value="SELECT 1 FROM dual"/>
+		<property name="dataSourceJNDI" value="jdbc/HikariCP"/>
+		<property name="poolName" value="*** HikariDataSource ***"/>
+	</bean>
+	
+	<bean 
+		id="hikariDataSource" 
+		class="com.zaxxer.hikari.HikariDataSource" 
+		destroy-method="close">
+		<constructor-arg ref="hikariConfig"/>
+	</bean>
+
+	<bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="hikariDataSource"/>
+		<property name="configLocation" value="classpath:mybatis-config.xml"/>
+		<!-- <property name="mapperLocations" value="classpath:mappers/*.xml"/> -->
+	</bean>
+
+
+
+	<mybatis-spring:scan base-package="org.zerock.seoulive.board.travel.mapper" />
+	
+	<!-- ================= Start Of AOP ================== -->
+	
+	<context:annotation-config />
+	<aop:aspectj-autoproxy />
+
+	<context:component-scan base-package="org.zerock.seoulive.board.travel.service" />
+	<context:component-scan base-package="org.zerock.seoulive.board.travel.controller" />
+	<context:component-scan base-package="org.zerock.seoulive.board.travel.persistence" />
+
+	<!-- ================= End Of AOP ================== -->
+	
+	<!-- ================= Start Of Dtributed TX ================== -->
+
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="hikariDataSource" />
+	</bean>
+
+	<tx:annotation-driven />
+
+	<!-- ================= End Of Dtributed TX ================== -->
+</beans>
