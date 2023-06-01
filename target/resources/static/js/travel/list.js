@@ -1,50 +1,165 @@
+
 // tabmenu
 $(function() {
-    $('ul.tab li').click(function() {
+
+    // var selectedCategory = ""; // 전역 변수로 선언
+    // var keyword = ""; // 전역 변수로 선언
+
+    $('.category label').click(function() {
         var activeTab = $(this).attr('data-tab');
-        $('ul.tab li').removeClass('on');
+        $('.category label').removeClass('on');
         $('.tabcont').removeClass('on');
         $(this).addClass('on');
         $('#' + activeTab).addClass('on');
-    })
+
+        var jsonData = activeTab;
+        console.log(jsonData);
+
+        // AJAX 요청을 통해 선택된 카테고리 값을 서버로 전송
+        // $.ajax({
+        //     url: '/board/travel/list',
+        //     method: 'GET',
+        //     data: {
+        //         category: selectedCategory
+        //         // keyword: keyword
+        //     },
+        //     success: function(response) {
+        //         // 서버에서 받은 응답 데이터를 처리
+        //         console.log(response);
+        //         // 추가적인 로직 수행 가능
+        //
+        //         // 예시: 받은 데이터로 DOM 요소 업데이트
+        //         var resultsContainer = $("#resultsContainer");
+        //         resultsContainer.empty(); // 기존 결과 삭제
+        //
+        //         // 서버 응답 데이터를 순회하며 결과를 생성하고 추가
+        //         response.forEach(function(result) {
+        //             var listItem = $("<li>").text(result.title);
+        //             resultsContainer.append(listItem);
+        //         });
+        //     },
+        //     error: function(error) {
+        //         // 에러 처리
+        //         console.log(error);
+        //     }
+        // });
+
+
+    });
+
+    $('.category input[type="radio"]').on('change', function() {
+
+        // var selectedCategory = $(this).find('input[name="category"]').val();
+        // var selectedCategory = $(this).val(); // 선택된 카테고리 값 가져오기
+        // var selectedCategory = $('input[name="category"]:checked').val();
+        // var selectedCategory = $(this).val(); // 선택된 카테고리 값 가져오기
+        // var category = $('.item[data-category="' + category + '"]').val();
+        // var selectedCategory = $(this).find('.item[data-category="' + selectedCategory + '"]').val(); // 선택된 카테고리 값 가져오기
+        var selectedCategory = $(this).val(); // 선택된 카테고리 값 가져오기
+        alert(selectedCategory);
+
+        $.ajax({
+            url: '/board/travel/list',
+            method: 'GET',
+            data: {
+                category: selectedCategory
+            },
+            success: function(response) {
+                console.log(response); // 응답 데이터 확인
+                alert("성공");
+                // 성공적으로 요청을 처리한 후 실행할 코드
+            },
+            error: function(xhr, status, error) {
+                // alert("오류");
+                // 요청 처리 중 오류가 발생한 경우 실행할 코드
+            }
+        });
+    });
 });
 
-// 좋아요 버튼 활성화
-var $heartIcon = $('.tabcont .list_thumType li.thum div.area_txt .fa-heart');
-$heartIcon.click(function() {
-    $(this).toggleClass('on');
-    alert("좋아요!");
-})
 
 // changeFn() : select option 값을 가져와 tab 활성화
 function changeFn() {
-    var selectedValue = $("#category").val();
+
+    var selectedCategory = $("#category").find("option:selected").val(); // 선택된 카테고리 값 가져오기
+    var keyword = $('.searchTerm[name="keyword"]').val(); // 검색어 값 가져오기
+    alert(selectedCategory + ", " + keyword);
 
     // 모든 탭과 탭 컨텐츠 비활성화
     $(".tab li").removeClass("on");
     $(".tabcont").removeClass("on");
 
     // 선택된 값에 해당하는 탭과 탭 컨텐츠 활성화
-    if (selectedValue === "공연") {
+    if (selectedCategory === "공연") {
         $(".tab [data-tab='menu2']").addClass("on");
         $("#menu2").addClass("on");
-    } else if (selectedValue === "야외활동") {
-        $(".tab [data-tab='menu3']").addClass("on");
+        // console.log("공연");
+
+        // // 공연에 관련된 데이터만 표시 (예시로 'show' 클래스를 사용)
+        // $(".item").removeClass("show"); // 모든 항목 숨기기
+        // $(".item[data-category='공연']").addClass("show"); // 공연에 해당하는 항목 표시
+    } else if (selectedCategory === "야외활동") {
+        $(".tab [data-tab='menu2']").addClass("on");
         $("#menu3").addClass("on");
-    } else if (selectedValue === "팝업스토어") {
+        // console.log("야외활동");
+    } else if (selectedCategory === "팝업스토어") {
         $(".tab [data-tab='menu4']").addClass("on");
         $("#menu4").addClass("on");
-    } else if (selectedValue === "전시회") {
+        // console.log("팝업스토어");
+    } else if (selectedCategory === "전시회") {
         $(".tab [data-tab='menu5']").addClass("on");
         $("#menu5").addClass("on");
+        // console.log("전시회");
     } else {
         // 선택된 값에 해당하는 탭이 없는 경우 전체 탭 활성화
         $(".tab li:first-child").addClass("on");
         $("#menu1").addClass("on");
+        // console.log("전체");
     }
+
 } // changeFn()
 
+// function changeTab(tabId) {
+//     // 모든 탭과 탭 컨텐츠 비활성화
+//     $(".tab li").removeClass("on");
+//     $(".tabcont").removeClass("on");
+//
+//     // 선택된 탭과 해당하는 탭 컨텐츠 활성화
+//     $(".tab [data-tab='" + tabId + "']").addClass("on");
+//     $("#" + tabId).addClass("on");
+// }
 
+// 좋아요
+$(function () {
+    var heartIcon = $('.area_txt .fa-heart');
+    heartIcon.click(function() {
+        $(this).toggleClass('on');
+        alert("좋아요!");
+
+        var boardType = $(this).find('input[name="board"]').val();
+        var boardSeq = $(this).find('input[name="board_seq"]').val();
+        alert(boardType + ", " + boardSeq);
+
+        $.ajax({
+            url: '/board/travel/likeList',
+            method: 'POST',
+            data: {
+                board: boardType,
+                board_seq: boardSeq
+            },
+            success: function(response) {
+                alert("좋아요!");
+                // 성공적으로 요청을 처리한 후 실행할 코드
+            },
+            error: function(xhr, status, error) {
+                alert("오류");
+                // 요청 처리 중 오류가 발생한 경우 실행할 코드
+            }
+        });
+
+    })
+
+});
 
 
 // calendar

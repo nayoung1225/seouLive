@@ -4,10 +4,12 @@ import lombok.Data;
 import org.springframework.stereotype.Component;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 @Component
 @Data
 public class Criteria {
+
     private Integer currPage = 1;   // 현재 페이지 번호
     private Integer amount = 10;    // 한 페이지당 게시물 개수
 //    private Integer pageNum;
@@ -21,36 +23,32 @@ public class Criteria {
     private String searchType = "";
     private String keyword = "";         // 검색이름
 
-//    private Date start_date;   // 캘린더 시작 날짜
-//    private Date end_date;   // 캘린더 끝 날짜
-    private String startDate;
-    private String endDate;
+    private Date start_date;
+    private Date end_date;
+    private String end_time;
+
+    private String selectedDate;
+
+    private String category;
 
     public Criteria() {
-        this(1, 10);
+        this(1, 10, null, null, null, null);
         this.skip = 0;
     }
 
-    public Criteria(int currPage, int amount) {
+    public Criteria(int currPage, int amount, Date start_date, Date end_date, String end_time, String category) {
         this.currPage = currPage;
         this.amount = amount;
-        this.skip = (currPage-1) * amount;
-    }
-
-    public String getKeyword(){
-        return keyword;
-    }
-
-    public void setKeyword(String keyword){
-        this.keyword = keyword;
-    }
-
-    public String toString(){
-        return "Criteria [currPage= " + currPage + ", amount= " + amount + ", skip= " + skip + ", keyword=" + keyword + "]";
+        this.start_date = start_date;
+        this.end_date = end_date;
+        this.end_time = end_time;
+//        this.skip = (currPage-1) * amount;
+        this.category = category;
     }
 
     public Integer getAmount() {
         return amount != null ? amount : 10; // Null 값일 경우 기본값 10을 반환하도록 처리
     }
+
 
 } // end class

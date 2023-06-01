@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.zerock.seoulive.board.travel.domain.BoardDTO;
 import org.zerock.seoulive.board.travel.domain.BoardVO;
 import org.zerock.seoulive.board.travel.domain.Criteria;
+import org.zerock.seoulive.board.travel.domain.TravelBoardLikeDTO;
 import org.zerock.seoulive.board.travel.exception.ServiceException;
 import org.zerock.seoulive.board.travel.mapper.BoardMapper;
 
@@ -64,18 +65,16 @@ public class BoardServiceImpl
         return null;
     }
 
-
     @Override
     public Integer getTotal(Criteria cri) throws ServiceException {
-        return this.dao.getTotalAmount();
-    }
+        return this.dao.getTotalAmount(cri);
+    } // getTotal
 
     @Override
-    public List<BoardVO> getListByDate(String selectedDate) {
-        // selectedDate를 활용하여 해당 날짜에 맞는 목록 데이터를 조회하는 로직을 구현합니다.
-        // 예시로 임시로 빈 리스트를 반환하도록 작성했습니다.
-        return dao.selectListByDate(selectedDate);
+    public void boardLike(TravelBoardLikeDTO likeDTO) {
+
     }
+
 
     @Override
     public void destroy() throws Exception {
@@ -92,6 +91,18 @@ public class BoardServiceImpl
         Objects.requireNonNull(this.dao);
         log.info("\n\t this.dao : {} ",dao);
 
+    }
+
+    @Override
+    // 카테고리 검색
+    public Object categorySelect(BoardDTO boardDTO) throws ServiceException{
+
+        try {
+            this.dao.categorySelect(boardDTO);
+        } catch(Exception e ) {
+            throw new ServiceException(e);
+        } // try-catch
+        return null;
     }
 
 

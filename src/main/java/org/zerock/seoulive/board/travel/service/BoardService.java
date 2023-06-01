@@ -5,6 +5,7 @@ import java.util.List;
 import org.zerock.seoulive.board.travel.domain.BoardDTO;
 import org.zerock.seoulive.board.travel.domain.BoardVO;
 import org.zerock.seoulive.board.travel.domain.Criteria;
+import org.zerock.seoulive.board.travel.domain.TravelBoardLikeDTO;
 import org.zerock.seoulive.board.travel.exception.ServiceException;
 
 
@@ -19,7 +20,6 @@ public interface BoardService {
     // 3. 특정 게시물 상세조회(read)
     public abstract BoardVO get(Integer seq) throws ServiceException;
 
-
     // 4. 특정 게시물 업데이트(update)
     public abstract Boolean modify(BoardDTO dto) throws ServiceException;
 
@@ -29,7 +29,10 @@ public interface BoardService {
     // 6. 총 게시물 개수 반환
     public abstract Integer getTotal(Criteria cri) throws ServiceException;
 
-    List<BoardVO> getListByDate(String selectedDate);
+    public abstract void boardLike(TravelBoardLikeDTO likeDTO) throws ServiceException;
 
-//    Integer getTotal() throws ServiceException;
+    // 카테고리 검색
+    public abstract Object categorySelect(BoardDTO boardDTO) throws ServiceException;
+
+
 } // end interface

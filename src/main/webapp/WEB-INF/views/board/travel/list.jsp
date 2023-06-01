@@ -18,6 +18,7 @@
 
     <link rel="stylesheet" href="../../../../resources/static/css/layout/layout.css">
     <link rel="stylesheet" href="../../../../resources/static/css/travel/list.css">
+<%--    <link rel="stylesheet" href="${pageContext.request.contextPath}resources/static/css/tr  avel/list.css">--%>
 
     <script src="../../../../resources/static/js/travel/list.js" defer></script>
 
@@ -27,14 +28,35 @@
     <script src="https://kit.fontawesome.com/7ae3a6a91c.js" crossorigin="anonymous"></script>
 
     <script>
+
         $(function (){
 
             $('.pageNum').on('click', function(e){
                 console.log('pageNum Clicked....')
                 let selectedPageNum = e.currentTarget.textContent
-                // console.log(selectedPageNum);
+                console.log(selectedPageNum);
+                let url = "/board/travel/list?currPage=" + selectedPageNum;
 
-                location.href = "/board/travel/list?currPage=" + selectedPageNum;
+
+                // category 파라미터를 추가
+                <%--url += "&category=" + encodeURIComponent('${pageMaker.cri.category}');--%>
+                <%--console.log(url);--%>
+
+
+                <%--let searchType = "${pageMaker.cri.searchType.}";--%>
+                <%--let keyword = "${pageMaker.cri.keyword}";--%>
+
+                <%--location.href = "/board/travel/list?currPage=" + selectedPageNum + "&searchType=" + searchType + "&keyword=" + keyword;--%>
+
+                let category = "${pageMaker.cri.category}";
+                let searchType = "${pageMaker.cri.searchType}";
+                let keyword = "${pageMaker.cri.keyword}";
+
+                location.href = "/board/travel/list?currPage=" + selectedPageNum +
+                    "&category=" + encodeURIComponent(category) +
+                    "&searchType=" + encodeURIComponent(searchType) +
+                    "&keyword=" + encodeURIComponent(keyword);
+
             }); // onclick
 
         }) // .jq
@@ -54,18 +76,12 @@
         <!-- search bar -->
         <div class="search_wrap">
             <div class="search">
-                <select name="searchType" id="category" onchange="changeFn()">
+                <select name="category" id="category" onchange="changeFn()">
                     <option value="">전체</option>
                     <option value="공연">공연</option>
                     <option value="야외활동">야외활동</option>
-                    <option value="팝업스토어">팝업스토어</option>동
+                    <option value="팝업스토어">팝업스토어</option>
                     <option value="전시회">전시회</option>
-
-<%--                    <option value="all">전체</option>--%>
-<%--                    <option value="show">공연</option>--%>
-<%--                    <option value="outdoor">야외활동</option>--%>
-<%--                    <option value="popup">팝업스토어</option>--%>
-<%--                    <option value="exhibition">전시회</option>--%>
                 </select>
                 <input type="text" class="searchTerm" placeholder="검색내용을 입력하세요." name="keyword" >
                 <button type="submit" class="searchButton">
@@ -74,33 +90,62 @@
             </div>
         </div>
 
-<%--        <c:choose>--%>
-<%--            <c:when test="${keyword}">--%>
-<%--                <p>--%>
-<%--                    <strong>${pageMaker.cri.keyword} </strong>키워드로 검색된--%>
-<%--                    <strong>${pageMaker.cri.amount}</strong>개의 파일이 있습니다.--%>
-<%--                </p>--%>
-<%--            </c:when>--%>
-<%--            <c:otherwise>--%>
-<%--                <p><strong>${pageMaker.cri.amount}</strong>개의 파일이 있습니다.</p>--%>
-<%--            </c:otherwise>--%>
-<%--        </c:choose>--%>
-
         <input type="hidden" name="currPage" value="${pageMaker.cri.currPage}">
         <input type="hidden" name="amount" value="${pageMaker.cri.amount}">
+<%--        <input type="radio" name="category" value="${pageMaker.cri.category}">--%>
 <%--        <input type="hidden" name="keyword" value="${pageMaker.cri.keyword }">--%>
         
     </form>
 
 
     <!-- tab menu -->
-    <ul class="tab">
-        <li class="on" data-tab="menu1"><a href="#">전체</a></li>
-        <li data-tab="menu2"><a href="#">공연</a></li>
-        <li data-tab="menu3"><a href="#">야외활동</a></li>
-        <li data-tab="menu4"><a href="#">팝업스토어</a></li>
-        <li data-tab="menu5"><a href="#">전시회</a></li>
-    </ul>
+<%--<c:forEach var="boardVO" items="${__LIST__}">--%>
+
+    <form id="categoryForm" action="/board/travel/list" method="get">
+
+        <input type="hidden" name="currPage" value="1">
+        <div class="category tab" name="category" >
+
+<%--            <div class="category">--%>
+<%--                <span><strong>카테고리</strong></span>--%>
+<%--            </div>--%>
+            <div>
+                <label data-tab="menu1">
+                    <input type="radio" name="category" value="" checked>
+                    전체
+                </label>
+                <label data-tab="menu2">
+                    <input type="radio" name="category" value="공연">
+                    공연
+                </label>
+                <label data-tab="menu3">
+                    <input type="radio" name="category" value="야외활동">
+                    야외활동
+                </label>
+                <label data-tab="menu4">
+                    <input type="radio" name="category" value="팝업스토어">
+                    팝업스토어
+                </label>
+                <label data-tab="menu5">
+                    <input type="radio" name="category" value="전시회">
+                    전시회
+                </label>
+            </div>
+        </div>
+    </form>
+
+<%--</c:forEach>--%>
+
+<%--    <form id="categoryForm" action="/board/travel/list" method="get">--%>
+<%--        <ul class="tab">--%>
+<%--            <li class="on" data-tab="menu1" data-value=""><a href="#">전체</a></li>--%>
+<%--            <li data-tab="menu2" data-value="공연"><a href="#">공연</a></li>--%>
+<%--            <li data-tab="menu3" data-value="야외활동"><a href="#">야외활동</a></li>--%>
+<%--            <li data-tab="menu4" data-value="팝업스토어"><a href="#">팝업스토어</a></li>--%>
+<%--            <li data-tab="menu5" data-value="전시회"><a href="#">전시회</a></li>--%>
+<%--        </ul>--%>
+<%--    </form>--%>
+
 
     <div id="menu1" class="tabcont on">
         <!-- calendar -->
@@ -190,10 +235,10 @@
         <ul class="list_thumType flnon">
 <%--            <li>START</li>--%>
 
-<%--            <%--%>
-<%--                System.out.println("**************** LIST ************");--%>
-<%--                System.out.println( request.getAttribute("__LIST__") );--%>
-<%--            %>--%>
+            <%
+                System.out.println("**************** LIST ************");
+                System.out.println( request.getAttribute("__LIST__") );
+            %>
 
             <c:forEach var="boardVO" items="${__LIST__}">
                 <li class="thum thum_1">
@@ -202,11 +247,19 @@
                         <em class="flag type_ing">진행중</em>
                     </div>
                     <div class="area_txt">
-                        <i class="fas fa-heart off"></i>
-                        <div class="tit"><a href="/board/travel/view?seq=${boardVO.title}">${boardVO.title}</a></div>
-<%--                        <div class="date"><a href="/board/travel/view?seq=${boardVO.date}">${boardVO.date}</a></div>--%>
-<%--                        <p class="date">[2023. 4. 5.~2023. 4. 9.]</p>--%>
-<%--                        <p class="tag"><span>#가볼만한축제</span><span>#가족과함께</span><span>#가족여행</span><span>#관광지</span><span>#기차여행</span><span>#꽃여행</span></p>--%>
+                        <i class="fas fa-heart off">
+                            <input type="hidden" name="board" value="travel" >
+                            <input type="hidden" name="board_seq" value="${boardVO.seq}" >
+                        </i>
+<%--                        <div class="seq"><a href="/board/travel/view?seq=${boardVO.seq}">${boardVO.seq}</a></div>--%>
+                        <div class="category">
+                            <a href="/board/travel/view?category=${boardVO.category}">[${boardVO.category}]</a>
+                        </div>
+                        <div class="tit"><a href="/board/travel/view?seq=${boardVO.seq}">${boardVO.title}</a></div>
+                        <div class="start_date">
+                            <a href="/board/travel/view?start_date=${boardVO.start_date}">${boardVO.start_date}</a>
+                            <a href="/board/travel/view?end_date=${boardVO.end_date}">${boardVO.end_date}</a>
+                        </div>
                     </div>
                 </li>
             </c:forEach>
@@ -239,28 +292,39 @@
     </div>
 
     <%--  공연 카테고리  --%>
-    <div id="menu2" class="tabcont">
+    <div id="menu2" class="tabcont item" data-category="공연">
 
         <h3>카테고리 > 공연</h3>
-
         <ul class="list_thumType flnon">
 
-            <c:forEach var="boardVO" items="${__LIST__}">
-                <li class="thum thum_1">
-                    <div class="photo">
-                        <a href="#"><img src="https://picsum.photos/id/122/200/300" alt="이미지"></a>
-                        <em class="flag type_ing">진행중</em>
-                    </div>
-                    <div class="area_txt">
-                        <i class="fas fa-heart off"></i>
-                        <div class="tit"><a href="/board/travel/view?title=${boardVO.title}">${boardVO.title}</a></div>
-                        <div class="tit"><a href="/board/travel/view?start_date=${boardVO.start_date}">${boardVO.start_date}</a></div>
-<%--                        <p class="date">[2023. 4. 5.~2023. 4. 9.]</p>--%>
-<%--                        <p class="tag"><span>#가볼만한축제</span><span>#가족과함께</span><span>#가족여행</span><span>#관광지</span><span>#기차여행</span><span>#꽃여행</span></p>--%>
-                    </div>
-                </li>
-            </c:forEach>
+                <c:forEach var="boardVO" items="${__LIST__}">
+                    <li class="thum thum_1">
+                        <div class="photo">
+                            <a href="#"><img src="https://picsum.photos/id/122/200/300" alt="이미지"></a>
+                            <em class="flag type_ing">진행중</em>
+                        </div>
+                        <div class="area_txt">
+                            <i class="fas fa-heart off"></i>
+                                <%--                        <div class="seq"><a href="/board/travel/view?seq=${boardVO.seq}">${boardVO.seq}</a></div>--%>
+                            <div class="category">
+                                <a href="/board/travel/view?category=${boardVO.category}">[${boardVO.category}]</a>
+                            </div>
+                            <div class="tit"><a href="/board/travel/view?seq=${boardVO.seq}">${boardVO.title}</a></div>
+                            <div class="start_date">
+                                <a href="/board/travel/view?start_date=${boardVO.start_date}">${boardVO.start_date}</a>
+                            </div>
+                            <div class="end_date">
+                                <a href="/board/travel/view?end_date=${boardVO.end_date}">${boardVO.end_date}</a>
+                            </div>
+                                <%--                        <div class="tit"><a href="/board/travel/view?start_date=${boardVO.start_date}">${boardVO.start_date}</a></div>--%>
+                                <%--                        <p class="date">[2023. 4. 5.~2023. 4. 9.]</p>--%>
+                                <%--                        <p class="tag"><span>#가볼만한축제</span><span>#가족과함께</span><span>#가족여행</span><span>#관광지</span><span>#기차여행</span><span>#꽃여행</span></p>--%>
+                        </div>
+                    </li>
+                </c:forEach>
         </ul>
+
+
 
         <!-- pagination -->
         <div class="pagination_wrap">
@@ -287,8 +351,8 @@
         </div>
     </div>
 
-    <%--  야외활동  --%>
-    <div id="menu3" class="tabcont">
+    <%--  야외활동 카테고리  --%>
+    <div id="menu3" class="tabcont item" data-category="야외활동">
 
         <h3>카테고리 > 야외활동</h3>
 
@@ -301,7 +365,15 @@
                     </div>
                     <div class="area_txt">
                         <i class="fas fa-heart off"></i>
-                        <div class="tit"><a href="/board/travel/view?title=${boardVO.title}">${boardVO.title}</a></div>
+<%--                        <div class="seq"><a href="/board/travel/view?seq=${boardVO.seq}">${boardVO.seq}</a></div>--%>
+                        <div class="category"><a href="/board/travel/view?category=${boardVO.category}">[${boardVO.category}]</a></div>
+                        <div class="tit"><a href="/board/travel/view?seq=${boardVO.seq}">${boardVO.title}</a></div>
+                        <div class="start_date">
+                            <a href="/board/travel/view?start_date=${boardVO.start_date}">${boardVO.start_date}</a>
+                        </div>
+                        <div class="end_date">
+                            <a href="/board/travel/view?end_date=${boardVO.end_date}">${boardVO.end_date}</a>
+                        </div>
 <%--                        <p class="date">[2023. 4. 5.~2023. 4. 9.]</p>--%>
 <%--                        <p class="tag"><span>#가볼만한축제</span><span>#가족과함께</span><span>#가족여행</span><span>#관광지</span><span>#기차여행</span><span>#꽃여행</span></p>--%>
                     </div>
@@ -335,8 +407,8 @@
 
     </div>
 
-    <%-- 팝업스토어 --%>
-    <div id="menu4" class="tabcont">
+    <%-- 팝업스토어 카테고리 --%>
+    <div id="menu4" class="tabcont item" data-category="팝업스토어">
 
         <h3>카테고리 > 팝업스토어</h3>
 
@@ -349,7 +421,15 @@
                     </div>
                     <div class="area_txt">
                         <i class="fas fa-heart off"></i>
-                        <div class="tit"><a href="/board/travel/view?title=${boardVO.title}">${boardVO.title}</a></div>
+<%--                        <div class="seq"><a href="/board/travel/view?seq=${boardVO.seq}">${boardVO.seq}</a></div>--%>
+                        <div class="category"><a href="/board/travel/view?category=${boardVO.category}">[${boardVO.category}]</a></div>
+                        <div class="tit"><a href="/board/travel/view?seq=${boardVO.seq}">${boardVO.title}</a></div>
+                        <div class="start_date">
+                            <a href="/board/travel/view?start_date=${boardVO.start_date}">${boardVO.start_date}</a>
+                        </div>
+                        <div class="end_date">
+                            <a href="/board/travel/view?end_date=${boardVO.end_date}">${boardVO.end_date}</a>
+                        </div>
 <%--                        <p class="date">[2023. 4. 5.~2023. 4. 9.]</p>--%>
 <%--                        <p class="tag"><span>#가볼만한축제</span><span>#가족과함께</span><span>#가족여행</span><span>#관광지</span><span>#기차여행</span><span>#꽃여행</span></p>--%>
                     </div>
@@ -382,8 +462,8 @@
         </div>
     </div>
 
-    <%-- 전시회 --%>
-    <div id="menu5" class="tabcont">
+    <%-- 전시회 카테고리 --%>
+    <div id="menu5" class="tabcont item" data-category="전시회">
 
         <h3>카테고리 > 전시회</h3>
 
@@ -396,9 +476,15 @@
                     </div>
                     <div class="area_txt">
                         <i class="fas fa-heart off"></i>
-                        <div class="tit"><a href="/board/travel/view?title=${boardVO.title}">${boardVO.title}</a></div>
-<%--                        <p class="date">[2023. 4. 5.~2023. 4. 9.]</p>--%>
-<%--                        <p class="tag"><span>#가볼만한축제</span><span>#가족과함께</span><span>#가족여행</span><span>#관광지</span><span>#기차여행</span><span>#꽃여행</span></p>--%>
+<%--                        <div class="seq"><a href="/board/travel/view?seq=${boardVO.seq}">${boardVO.seq}</a></div>--%>
+                        <div class="category"><a href="/board/travel/view?category=${boardVO.category}">[${boardVO.category}]</a></div>
+                        <div class="tit"><a href="/board/travel/view?seq=${boardVO.seq}">${boardVO.title}</a></div>
+                        <div class="start_date">
+                            <a href="/board/travel/view?start_date=${boardVO.start_date}">${boardVO.start_date}</a>
+                        </div>
+                        <div class="end_date">
+                            <a href="/board/travel/view?end_date=${boardVO.end_date}">${boardVO.end_date}</a>
+                        </div>
                     </div>
                 </li>
             </c:forEach>

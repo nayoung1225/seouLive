@@ -10,11 +10,40 @@ $(function() {
 });
 
 // 좋아요 버튼 활성화
-var $heartIcon = $('.tabcont .list_thumType li.thum div.area_txt .fa-heart');
-$heartIcon.click(function() {
-    $(this).toggleClass('on');
-    alert("좋아요!");
-})
+
+
+
+$(function () {
+    var heartIcon = $('.area_txt .fa-heart');
+    heartIcon.click(function() {
+        $(this).toggleClass('on');
+        alert("좋아요!");
+
+
+        var boardType = $(this).find('input[name="board"]').val();
+        var boardSeq = $(this).find('input[name="board_seq"]').val();
+        alert(boardType + ", " + boardSeq);
+
+        $.ajax({
+            url: '/board/list/likeList',
+            method: 'POST',
+            data: {
+                board: boardType,
+                board_seq: boardSeq
+            },
+            success: function(response) {
+                alert("좋아요!");
+                // 성공적으로 요청을 처리한 후 실행할 코드
+            },
+            error: function(xhr, status, error) {
+                alert("오류");
+                // 요청 처리 중 오류가 발생한 경우 실행할 코드
+            }
+        });
+
+    })
+
+});
 
 // changeFn() : select option 값을 가져와 tab 활성화
 function changeFn() {

@@ -2,6 +2,7 @@ package org.zerock.seoulive.board.travel.domain;
 
 import lombok.Data;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 
 @Data
@@ -15,11 +16,10 @@ public class BoardDTO {
     private String content;
     private String address;
     private String total;
-    private Timestamp write_date;
-    private Timestamp modify_date;
 
-    private Timestamp start_date;
-    private Timestamp end_date;
+    private Date start_date;
+    private Date end_date;
+    private String end_time;
 
 
 } // end class

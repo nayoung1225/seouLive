@@ -6,43 +6,62 @@
 
 <mapper namespace="org.zerock.seoulive.mapper.BoardMapper">
 
+<!--    <select id="select" resultType="org.zerock.seoulive.board.travel.domain.BoardVO">-->
+<!--        SELECT *-->
+<!--        FROM tbl_travel-->
+<!--        WHERE title = #{title}-->
+<!--        AND category = #{category}-->
+<!--        ORDER BY seq desc-->
+<!--    </select>-->
     <select id="select" resultType="org.zerock.seoulive.board.travel.domain.BoardVO">
         SELECT *
         FROM tbl_travel
-        WHERE title = #{title}
+        WHERE
+        <if test="title != null">
+            title = #{title}
+        </if>
+        <if test="category != null">
+            <choose>
+                <when test="category == '공연'">
+                    category = '공연'
+                </when>
+                <when test="category == '야외활동'">
+                    category = '야외활동'
+                </when>
+                <when test="category == '팝업스토어'">
+                    category = '팝업스토어'
+                </when>
+                <when test="category == '전시회'">
+                    category = '전시회'
+                </when>
+                <otherwise>
+                    <!-- category 값이 다른 경우에 대한 처리를 여기에 추가 -->
+                </otherwise>
+            </choose>
+        </if>
+        ORDER BY seq desc
     </select>
 
-    <select id="getList" resultType="org.zerock.seoulive.board.travel.domain.BoardVO">
-<!--        <![CDATA[-->
-<!--        SELECT seq, writer, category, title, content, address, total, write_date, modify_date-->
-<!--        FROM (-->
-<!--            SELECT /*+INDEX_DESC(tbl_travel) */ ROWNUM AS rn, seq, writer, category, title, content, address, total, write_date, modify_date-->
-<!--            FROM tbl_travel-->
-<!--            WHERE ROWNUM <= #{currPage} * #{amount}-->
-<!--            <if test="keyword != null">-->
-<!--                AND title LIKE '%' || #{keyword} || '%'-->
-<!--            </if>-->
-<!--        )-->
-<!--        WHERE rn > (#{currPage} - 1) * #{amount}-->
-<!--        ]]>-->
-<!--        SELECT title-->
-<!--        FROM tbl_travel-->
-<!--        WHERE title LIKE 'A%';-->
 
-<!--        WHERE title LIKE CONCAT('%','a','%')-->
+    <!--    <select id="selectSearchList" resultType="org.zerock.seoulive.board.travel.domain.BoardVO">-->
+<!--        SELECT-->
+<!--        /*+ index_desc(tbl_travel) */ *-->
+<!--        FROM tbl_travel-->
+<!--        WHERE 1=1-->
+<!--        <if test="category != null and !category.isEmpty()">-->
+<!--            AND category in #{category}-->
+<!--        </if>-->
+<!--        OFFSET (#{currPage} -1) * #{amount} ROWS-->
+<!--        FETCH NEXT #{amount} ROWS ONLY-->
+<!--    </select>-->
+
+    <select id="getList" resultType="org.zerock.seoulive.board.travel.domain.BoardVO">
+
     </select>
 
     <!-- 게시물 총 개숫 -->
     <select id="getTotal" resultType="int">
 
-<!--        select count(*) from tbl_travel-->
-
-<!--        <if test="keyword != null">-->
-
-<!--            &lt;!&ndash; Oracle &ndash;&gt;-->
-<!--            where title like '%'||#{keyword}||'%'-->
-
-<!--        </if>-->
 
     </select>
 

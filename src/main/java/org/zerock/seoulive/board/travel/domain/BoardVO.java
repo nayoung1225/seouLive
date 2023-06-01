@@ -4,6 +4,7 @@ import lombok.Value;
 import lombok.extern.log4j.Log4j2;
 import oracle.sql.TIMESTAMP;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 
 @Value
@@ -17,11 +18,17 @@ public class BoardVO {
     private String content;
     private String address;
     private String total;
-    private Timestamp write_date;
-    private Timestamp modify_date;
 
-    private Timestamp start_date;
-    private Timestamp end_date;
+    private Date start_date;
+    private Date end_date;
+    private String start_time;
+    private String end_time;
+
+//    private Timestamp write_date;
+//    private Timestamp modify_date;
+
+//    private Timestamp startDate;
+//    private Timestamp end_date;
     public BoardDTO toDTO(){
         log.trace("toDTO() invoked.");
 
@@ -33,17 +40,18 @@ public class BoardVO {
         dto.setContent(content);
         dto.setAddress(address);
         dto.setTotal(total);
-        dto.setWrite_date(write_date);
-        dto.setModify_date(modify_date);
         dto.setStart_date(start_date);
         dto.setEnd_date(end_date);
-
-
+        dto.setEnd_time(end_time);
 
         log.info("/t+ dto:{}", dto);
 
         return dto;
 
     } // TravelDTO
+
+    public String getTitle() {
+        return title;
+    }
 
 } // end class 

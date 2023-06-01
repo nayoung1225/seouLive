@@ -305,6 +305,88 @@ ul.tab li.on a{
     font-style: italic;
 }
 
+/* list */
+/*.listWrap{*/
+/*    width: 1200px;*/
+/*    margin: 0 auto;*/
+/*    padding: 0 10px;*/
+/*    border: 1px solid #000;*/
+/*    border-left: 0;*/
+/*    border-right: 0;*/
+/*    margin-bottom: 50px;*/
+/*}*/
+/*.listWrap h4{*/
+/*    padding: 20px 10px;*/
+/*}*/
+/*.listWrap .list_thumType{*/
+/*    width: 100%;*/
+/*    overflow: hidden;*/
+/*    padding: 0;*/
+/*}*/
+/*.listWrap .list_thumType li.thum{*/
+/*    position: relative;*/
+/*    border-top: 1px solid #e6e6e6;*/
+/*    padding: 15px 0 9px;*/
+/*}*/
+/*.listWrap .list_thumType li.thum:last-of-type{*/
+/*    border-bottom: 1px solid #e6e6e6;*/
+/*}*/
+/*.listWrap .list_thumType li.thum .photo{}*/
+/*.listWrap .list_thumType li.thum .photo .flag{*/
+/*    position: absolute;*/
+/*    top: 10px;*/
+/*    left: 0;*/
+/*    font-size: 12px;*/
+/*    padding: 0 5px;*/
+/*    box-sizing: border-box;*/
+/*    min-width: 48px;*/
+/*    height: 28px;*/
+/*    line-height: 28px;*/
+/*    color: #fff;*/
+/*    text-align: center;*/
+/*    line-height: 28px;*/
+/*    letter-spacing: -0.35px;*/
+/*}*/
+/*.listWrap .list_thumType li.thum .photo .type_ing{*/
+/*    background-color: #ff3333;*/
+/*}*/
+/*.listWrap .list_thumType li.thum .photo .type_before{*/
+/*    background-color: #13294b;*/
+/*}*/
+/*.listWrap .list_thumType li.thum .photo a img{*/
+/*    position: absolute;*/
+/*    left: 0;*/
+/*    top: 10px;*/
+/*    width: 140px;*/
+/*    height: 94px;*/
+/*}*/
+/*.listWrap  .list_thumType li.thum div.area_txt{*/
+/*    min-height: 94px;*/
+/*    padding-left: 160px;*/
+/*    padding-right: 20px;*/
+/*    line-height: 1.8;*/
+/*}*/
+/*.listWrap  .list_thumType li.thum div.area_txt .tit{*/
+/*    font-weight: 600;*/
+/*}*/
+/*.listWrap  .list_thumType li.thum div.area_txt .fa-heart{*/
+/*    float: right;*/
+/*    font-size: 20px;*/
+/*    cursor: pointer;*/
+/*}*/
+/*.listWrap  .list_thumType li.thum div.area_txt .fa-heart.off{*/
+/*    color: #e6e6e6;*/
+/*}*/
+/*.listWrap  .list_thumType li.thum div.area_txt .fa-heart.on{*/
+/*    color: #ff3333;*/
+/*}*/
+/*.listWrap  .list_thumType li.thum div.area_txt .date{}*/
+/*.listWrap  .list_thumType li.thum div.area_txt .tag{*/
+/*    font-size: 12px;*/
+/*    margin-top: 15px;*/
+/*    font-style: italic;*/
+/*}*/
+
 /* pagination */
 .col:first-of-type {
     margin-left: 0;
@@ -336,22 +418,25 @@ ul.tab li.on a{
     padding: 0;
     width: 100%;
 }
-.pagination_wrap ul.pagination li.Prev{
+.pagination_wrap ul.pagination li{
     display: inline-block;
-    margin: 0 10px 0 0;
+    padding: 0 5px;
 }
-.pagination_wrap ul.pagination li.Next{
+.pagination_wrap ul.pagination li a{
     display: inline-block;
+    padding: 10px 18px;
+    color: #222;
 }
-.pagination_wrap ul.pagination li.pageNum{
-    display: inline-block;
+.pagination_wrap ul.pagination li a{
     width: 40px;
     height: 40px;
     line-height: 40px;
+    padding: 0;
     text-align: center;
 }
-.pagination_wrap ul.pagination li.pageNum.current{
+.pagination_wrap ul.pagination li a.active{
     background-color: #49539E;
+    /* border-radius: 100%; */
     color: #fff;
     font-weight: 600;
 }
